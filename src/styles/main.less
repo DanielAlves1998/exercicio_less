@@ -1,0 +1,119 @@
+@import "mapas.less"; // aqui são as importações das pastas
+
+@breakpointMobile: ~"(max-width: 767px)"; //aqui serve para modificar para tela mobile
+@breakpointTablet: ~"(min-width:768px) and (max-width: 1023px)";
+
+.marginBotton8 { //isso é um mixin, ele serve para quando for repetir al gun código, ai é só aplicar ele que não precisa ficar colocando o mesmo código o tempo todo 
+    margin-bottom: 8px;
+}
+
+* { // todo esse código é chamado de reset 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", system-ui;
+}
+
+body {
+    background-color: #colors[backgroundColor]; //essa cor está vindo do mapeamento de cor
+    color: #colors[textColor];
+}
+
+li {
+    list-style: none; //serve para tirar o estilo da lista que são os pontos
+}
+
+.container {
+    max-width: 960px; //limita o tamanho da tela do site 
+    width: 100%; // a largura vai ocupar 100% dos 960PX limitado a cima pelo max-wideth
+    margin: 0 auto; //serve para centralizar todo o conteúdo no centro
+    height: 100vh; // é para deixa com 100% da autura do viw port
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // aqui para alinhar seria com o aline itens, más como usei o flex-direction: column; para mudar a direção tive que usar o justify-content
+
+    @media @breakpointTablet {
+        max-width: 80%;
+    }
+
+    @media @breakpointMobile { //aqui é a continuação da configycação da linha 2, para tela mobile
+        max-width: 70%;
+    }
+
+}
+
+header {
+    padding-bottom: 24px; //espaçamento para a parte inferior
+// o siculo é a metade de um quadrado, quando for arredondar uma imagem tem que colocar a metade de pxs nela
+    .profile-avatar { //só dá para colocar um dentro do outro porque estou usando o less, assim como o gulp
+        display: block;
+        margin: 0 auto 24px; //serve para sentraslizar na orizontal, o 0 é o topo, o auto são as laterais, e o 24px é o topo da página
+        border-radius: 100px; //é para arredondar a imagem, ele aceita pxs, e porcentagens
+
+    }
+}
+
+.profile-bio {
+    text-align: center; //é para centralizar o conteúdo
+
+    &-name { //o & referice o seletor pai, e é só colocar o restante que não está no seletor pai
+        font-size: 16px; //é para diminuir o tamanho da fonte
+        .marginBotton8(); //margem em baixo
+    }
+
+        &-subtitle {
+            font-size: 14px;
+            .marginBotton8(); //esse é o mixin que foi criado lá em cima
+        }
+
+        &-description {
+            font-size: 14px;
+            //o 0.7 é equivalente á 70%
+            opacity: 0.7; //serve para diminuir a opacidade do conteúdo, deixa mais transparente, menos visivel
+        }
+}
+
+.social-links {
+    display: flex; //serve para deixar um ao lado do outro
+    justify-content: space-between; //serve para que os itens sejam distribuidos um ao lado do outro de forma uniforme
+    max-width: 230px; // é para diminuir o espaço entre eles
+    width: 100%;
+    margin: 0 auto; // serve para centralizar 
+
+
+    li {
+
+        img {
+            transition: all ease .3s; // faz com que o zum da imagem seja mais suave
+            &:hover {
+                transform: scale(1.2); //faz com que as imagens aumentem quando passar o mose por cima. e o 1.1 é uma escala de 110% nesse caso e 1.2 são 120%
+            }
+        }
+    }
+}
+
+.projects-list {
+    margin-top: 32px;
+
+    &-item {
+        a {
+            text-decoration: none; // é para tirar a linha do link
+            background-color: #colors[buttonColor];
+            display: block;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            text-align: center; // é para centralizar as palavras do botão
+            color: #colors[textColor]; //é para mudar a cor do texto
+            font-weight: bold; // coloca negrito na fonte
+            border-radius: 30px; //é para arredondar as bordas do botão 
+            border: 2px solid #colors[buttonColor]; //coloca uma gorde
+            transition: all ease .5s; //deixa a transição em meio segundo .5s
+
+            &:hover {
+                color: #colors[buttonColor]; //serve para deixar o texto transparente, no caso deixa da mesma cor do botão
+                background-color: transparent; //deixa a cor do botão transparente
+
+            }
+        }
+    }
+}
